@@ -65,7 +65,7 @@ function panggil(){
         	<td></td><td></td><td  align="left"><input name="LOGIN" type="submit" value="Login"></td>
         </tr>
         <tr>
-        	<td colspan="3" align="center"><?php echo $_REQUEST['alert'];  ?></td>
+        	<td colspan="3" align="center"><?php if(isset($_REQUEST['alert'])) echo $_REQUEST['alert'];  ?></td>
         </tr>
         
       

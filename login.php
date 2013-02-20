@@ -1,4 +1,5 @@
 <?php
+session_start();
 //include("lib.php");
 
 $nama=$_POST["nama"];
@@ -23,18 +24,21 @@ $tipe=$data['jabatan'];}
 }
 
 if($login){
-
+$_SESSION['login']=true;
 if($tipe=='s'){
-header("location:home.html");
+$_SESSION['user']="supa";
 }
 if($tipe=='o'){
-header("location:home_jurusan.html");	
+$_SESSION['user']="juru";
 }
-
+if($tipe=='m'){
+$_SESSION['user']="rekta";	
+}
+header("location:home.php");
 echo "login berhasil ".$tipe;
 
-
 }
+
 else{
 header("location:index.php?alert=Login Gagal");
 echo "login gagal".$nama." ".$pass;

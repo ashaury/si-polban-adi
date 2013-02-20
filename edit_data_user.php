@@ -1,6 +1,7 @@
 <?php
 session_start();
 if($_SESSION['login']){
+include("lib.php");	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +24,19 @@ body {
   </tr>
 </table>
 <p>&nbsp;</p>
-<form id="form1" name="form1" method="post" action="user_proses_tambah.php">
+<form id="form1" name="form1" method="post" action="user_proses_edit.php">
+<?php
+$id=$_REQUEST['w'];
+	$link=koneksi_db();
+	$sql="select * from login where nama_id='$id'";
+	$res=mysql_query($sql,$link);
+	if($res)
+	{
+		if(mysql_num_rows($res)>0)
+		{
+			$data=mysql_fetch_array($res);
+?>
+<input type="hidden" name="id" value="<?php echo $id ?>" />
 <table width="60%" height="153" border="1" align="center">
   <tr>
     <th bgcolor="#FFCC00" scope="col"><p>&nbsp;</p>
@@ -31,35 +44,38 @@ body {
       <tr>
         <td width="41"><strong>Nama</strong></td>
         <td width="3">:</td>
-        <td width="261" bgcolor="#FFFFFF"><input type="text" name="nama" /></td>
+        <td width="261" bgcolor="#FFFFFF"><input type="text" name="nama" value="<?php echo $data['nama'];?>" /></td>
       </tr>
       <tr>
         <td><strong>Jabatan</strong></td>
         <td>:</td>
-        <td bgcolor="#FFFFFF"><input type="text" name="jabatan" /></td>
+        <td bgcolor="#FFFFFF"><input type="text" name="jabatan" value="<?php echo $data['jabatan'];?>" /></td>
       </tr>
       <tr>
         <td><strong>Username</strong></td>
         <td>:</td>
-        <td bgcolor="#FFFFFF"><input type="text" name="user" /></td>
+        <td bgcolor="#FFFFFF"><input type="text" name="user" value="<?php echo $data['nama_id'];?>" /></td>
       </tr>
       <tr>
         <td><strong>Password</strong></td>
         <td>:</td>
-        <td bgcolor="#FFFFFF"><input type="text" name="pass" /></td>
+        <td bgcolor="#FFFFFF"><input type="text" name="pass" value="<?php echo $data['password'];?>" /></td>
       </tr>
     </table>
+<?php
+		}}
+?> 
       <p><?php if(isset($_REQUEST['a']))echo $_REQUEST['a']; ?>&nbsp;  </p>
         <label>
-          <input type="submit" name="button" id="button" value="Tambah" />
+          <input type="submit" name="button" id="button" value="Edit" />
         </label>
-        <input onclick="window.location.href='home.php'" type="button" value="Keluar" />
+        <input onclick="window.location.href='Input_data_user.php'" type="button" value="keluar" />
       </form>
       <p>&nbsp;</p>
     <p></p></th>
   </tr>
 </table>
-.
+
 <table width="60%" height="100%" border="1" align="center">
   <tr bgcolor="#000000">
     <th scope="col"><table width="100%" height="100%" border="1">
