@@ -41,17 +41,17 @@ body {
             <?php
 			if(($_SESSION['user']=="juru")||($_SESSION['user']=="rekta")){
 			?> 
-            <input onclick="window.location.href='Persedian_Masuk.php'" type="button" name="button3" id="button3" value="Persediaan masuk" style=" width:100%" />
-            <input onclick="window.location.href='Persedian_Keluar.php'" type="button" name="button4" id="button4" value="Persediaan Keluar" style=" width:100%" />
+            <input onclick="window.location.href='Home_Persediaan_masuk.html'" type="button"  value="Persediaan masuk" style=" width:100%" />
+            <input onclick="window.location.href='Home_Persediaan_keluar.html'" type="button" value="Persediaan Keluar" style=" width:100%" />
             <?php
             if($_SESSION['user']=="juru"){
 			?>
-            <input onclick="window.location.href='Laporan_jurusan.html'" type="button" name="button5" id="button5" value="laporan" style=" width:100%" />
+            <input onclick="window.location.href='Laporan_jurusan.html'" type="button"  value="laporan" style=" width:100%" />
             <?php
 			}
 			if($_SESSION['user']=="rekta"){	
 			?>
-            <input onclick="window.location.href='Laporan_pusat.html'" type="button" name="button5" id="button5" value="laporan" style=" width:100%" />
+            <input onclick="window.location.href='Laporan_pusat.html'" type="button"  value="laporan" style=" width:100%" />
             <?php
 			}
 			?>

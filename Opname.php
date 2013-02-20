@@ -14,7 +14,7 @@
       <p align="left" style="font-size:16px; word-spacing:normal" &ensp;>&nbsp;</p>
       <table width="100%" border="2">
         <tr>
-          <th  width="30%">Persedian Masuk</th>
+          <th  width="30%">Opname Fisik</th>
         </tr>
       </table></td>
     
@@ -38,7 +38,7 @@ $password="";
 $link=mysql_connect($host,$user,$password);
 mysql_select_db("dbsedia10",$link);
 $i=1;
-$query="select * from t_sediam order by tgldok desc limit 50 ";
+$query="select * from t_opsik order by tgldok desc limit 50 ";
 $res=mysql_query($query,$link);
 if($res){
 while($data=mysql_fetch_array($res)){
@@ -70,8 +70,8 @@ while($data=mysql_fetch_array($res)){
              </label>
         <table width="48%" align="right" >
                <tr>
-                 <td><input onclick="window.location.href='Table_Transaksi_Masuk.php'" name="" type="button" value="Tambah" />
- <!--                <input name="input" type="button" value="Edit" />
+                 <td><input onclick="window.location.href='Tabel_Transaksi_Opname.php'" name="" type="button" value="Tambah" />
+<!--                <input name="input" type="button" value="Edit" />
                  <input name="input2" type="button" value="Hapus" />
 //-->                 
                  <input onclick="window.location.href='Home_Persediaan_masuk.html'" name="input3" type="button" value="Kembali" /></td>

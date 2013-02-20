@@ -1,3 +1,6 @@
+<?php
+include("lib.php");
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -31,13 +34,14 @@ body {
     </table>
 
 <p>&nbsp;</p>
+<form action="transaksi_masuk_proses.php" method="post">
 <table>
         <tr>
-        	<td bgcolor="#FFCC00" bordercolor="#333333">Nomor dokumen </td> <td>:</td><td><input id="nomor" name="nomerkartu" type="text" size="30" maxlength="50"align="left"></td>
+        	<td bgcolor="#FFCC00" bordercolor="#333333">Nomor dokumen </td> <td>:</td><td><input name="nodok" type="text" size="30" maxlength="50"align="left"></td>
   </tr>
         <tr>
         	<td bgcolor="#FFCC00">Tanggal </td><td>:</td>
-        	<td><input class="tg_pers" name="tg_pers" type="text" size="30" maxlength="30" />
+        	<td><input class="tg_msk" name="tg_msk" type="text" size="30" maxlength="30" />
 <!--            <form id="form2" name="form2" method="post" action="">
         	  <label>
         	    <select name="hari" id="hari">
@@ -54,20 +58,40 @@ body {
             </form>
 //-->            </td>
         </tr>
+         <tr>
+        <td bgcolor="#FFCC00">Barang</td>
+          <td>:</td>
+          <td  align="left">
+          <select name="barang">
+                <option value="" selected="selected" >---Pilih Barang---</option>
+                <?php
+				$link=koneksi_db();
+				$sqlbrg="select * from t_brg group by kd_brg";
+				$resbrg=mysql_query($sqlbrg,$link);
+				if($resbrg){
+					while($brg=mysql_fetch_array($resbrg)){
+                	echo"
+					<option value=".$brg[kd_brg].">".$brg[ur_brg]."</option>
+					";
+					}
+				}
+				?>
+				</select>
+          </td></tr>
         <tr>
         <td bgcolor="#FFCC00">Lokasi</td>
           <td>:</td>
           <td  align="left">
           <select name="lokasi">
-                <option value="" selected="selected" >---Pilih Kategori---</option>
+                <option value="" selected="selected" >---Pilih Lokasi---</option>
                 <?php
-				$link=koneksiku();
-				$sqlkate="select * from kategori";
+				$link=koneksi_db();
+				$sqlkate="select * from t_upb";
 				$reskate=mysql_query($sqlkate,$link);
 				if($reskate){
 					while($kate=mysql_fetch_array($reskate)){
                 	echo"
-					<option value=".$kate[kategori_id].">".$kate[katenama]."</option>
+					<option value=".$kate[kd_lokasi].">".$kate[ur_upb]."</option>
 					";
 					}
 				}
@@ -77,31 +101,38 @@ body {
         <tr>
           <td bgcolor="#FFCC00">Kode persedian</td>
           <td>:</td>
-          <td  align="left"><input id="id3" name="id2" type="password" size="30" maxlength="30" /></td>
+          <td  align="left"><input name="kd_pers" type="text" size="30" maxlength="30" /></td>
         </tr>
         <tr>
           <td bgcolor="#FFCC00">Harga satuan</td>
           <td>:</td>
-          <td  align="left"><input id="id4" name="id3" type="password" size="30" maxlength="30" /></td>
+          <td  align="left"><input name="harga" type="text" size="30" maxlength="30" /></td>
         </tr>
         <tr>
-          <td bgcolor="#FFCC00">Harga total</td>
+          <td bgcolor="#FFCC00">Jumlah Masuk</td>
           <td>:</td>
-          <td  align="left"><input id="id5" name="id4" type="password" size="30" maxlength="30" /></td>
+          <td  align="left"><input name="kuant" type="text" size="30" maxlength="30" /></td>
         </tr>
         <tr>
           <td bgcolor="#FFCC00">Tgl Buku</td>
           <td>:</td>
-          <td  align="left"><input class="tg_buku" id="id6" name="id5" type="text" size="30" maxlength="30" /></td>
+          <td  align="left"><input class="tg_buku" name="tg_buku" type="text" size="30" maxlength="30" /></td>
         </tr>
         <tr>
           <td bgcolor="#FFCC00">Keterangan</td>
           <td>:</td>
-          <td  align="left"><input id="id7" name="id6" type="password" size="30" maxlength="30" /></td>
+          <td  align="left"><input name="ket" type="text" size="30"  /></td>
+        </tr>        
+        <tr>
+          <td ></td>
+          <td></td>
+          <td  align="left"><input type="submit" name="button" id="button" value="tambah" />&emsp;  
+                <input onclick="javascript:back()" type="button" value="batal" /></td>
         </tr>
 </table>
 </form>
       </td>
+<!--      
       <table width="98%" border="1" align="center">
         <tr bgcolor="#000000">
           <th height="584" bgcolor="#000000" scope="col"><table width="102%" border="0.5" align="center" bordercolor="#000000">
@@ -265,6 +296,7 @@ body {
           <p>&nbsp;</p></th>
       </tr>
 </table>
+//-->
     <p>&nbsp;</p>
     <tr>
 <script type="text/javascript" src="kode/jquery-1.4.3.min.js"></script>
@@ -272,7 +304,7 @@ body {
 <script type="text/javascript">
 jQuery(document).ready(function () {
 	$('input.tg_buku').simpleDatepicker({ startdate: 1945});
-	$('input.tg_pers').simpleDatepicker({ startdate: 1945});
+	$('input.tg_msk').simpleDatepicker({ startdate: 1945});
 });
 </script>
 </body>

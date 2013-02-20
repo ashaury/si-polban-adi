@@ -39,7 +39,7 @@ $password="";
 $link=mysql_connect($host,$user,$password);
 mysql_select_db("dbsedia10",$link);
 $i=1;
-$query="select * from t_sediak limit 50 ";
+$query="select * from t_sediak order by tgldok desc limit 50 ";
 $res=mysql_query($query,$link);
 if($res){
 while($data=mysql_fetch_array($res)){
@@ -50,166 +50,13 @@ while($data=mysql_fetch_array($res)){
     <td bgcolor="#FFFFFF"><?php echo $data['tgldok']; ?></td>
     <td bgcolor="#FFFFFF"><?php echo $data['tglbuku']; ?></td>
     <td bgcolor="#FFFFFF"><?php echo $data['keterangan']; ?></td>
-    <td bgcolor="#FFFFFF"><?php echo $data['rph_sat']; ?></td>
+    <td bgcolor="#FFFFFF"><?php echo ($data['rph_sat']*$data['kuantitas']); ?></td>
   </tr>
 
 <?php
 }}
 ?>
-<!--
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  <tr>
-    <th bgcolor="#FFFFFF" scope="row">&nbsp;</th>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-    <td bgcolor="#FFFFFF">&nbsp;</td>
-  </tr>
-  //-->
+
 </table>
 <table width="100%" height="79" border="1">
   <tr align="left">
@@ -225,10 +72,11 @@ while($data=mysql_fetch_array($res)){
              </label>
         <table width="48%" align="right" >
                <tr>
-                 <td><input name="" type="button" value="Tambah" />
-                 <input name="input" type="button" value="Edit" />
+                 <td><input onclick="window.location.href='Tabel_Transaksi_Keluar.php'" type="button" value="Tambah" />
+<!--                 <input name="input" type="button" value="Edit" />
                  <input name="input2" type="button" value="Hapus" />
-                 <input onclick="javascript:history.back()" name="input3" type="button" value="Kembali" /></td>
+//-->                 
+                 <input onclick="window.location.href='Home_Persediaan_keluar.html'" name="input3" type="button" value="Kembali" /></td>
                </tr>
         </table>
       </form>
