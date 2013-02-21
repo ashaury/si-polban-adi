@@ -20,7 +20,8 @@ if($res){
 while($data=mysql_fetch_array($res)){
 if(($nama==$data['nama_id'])&&($pass==$data['password']))
 {$login=true;
-$tipe=$data['jabatan'];}
+$tipe=$data['jabatan'];
+$jurid=$data['kd_lokasi'];}
 }
 
 if($login){
@@ -30,6 +31,7 @@ $_SESSION['user']="supa";
 }
 if($tipe=='o'){
 $_SESSION['user']="juru";
+$_SESSION['loka']=$jurid;
 }
 if($tipe=='m'){
 $_SESSION['user']="rekta";	

@@ -46,12 +46,12 @@ body {
             <?php
             if($_SESSION['user']=="juru"){
 			?>
-            <input onclick="window.location.href='Laporan_jurusan.html'" type="button"  value="laporan" style=" width:100%" />
+            <input onclick="window.location.href='Laporan_jurusan.php'" type="button"  value="laporan" style=" width:100%" />
             <?php
 			}
 			if($_SESSION['user']=="rekta"){	
 			?>
-            <input onclick="window.location.href='Laporan_pusat.html'" type="button"  value="laporan" style=" width:100%" />
+            <input onclick="window.location.href='Laporan_pusat.php'" type="button"  value="laporan" style=" width:100%" />
             <?php
 			}
 			?>

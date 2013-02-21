@@ -71,7 +71,7 @@ body {
 				if($resbrg){
 					while($brg=mysql_fetch_array($resbrg)){
                 	echo"
-					<option value=".$brg[kd_brg].">".$brg[ur_brg]."</option>
+					<option value=".$brg['kd_brg'].">".$brg['ur_brg']."</option>
 					";
 					}
 				}
@@ -91,7 +91,7 @@ body {
 				if($reskate){
 					while($kate=mysql_fetch_array($reskate)){
                 	echo"
-					<option value=".$kate[kd_lokasi].">".$kate[ur_upb]."</option>
+					<option value=".$kate['kd_lokasi'].">".$kate['ur_upb']."</option>
 					";
 					}
 				}
