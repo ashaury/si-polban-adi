@@ -66,7 +66,7 @@ body {
                 <option value="" selected="selected" >---Pilih Barang---</option>
                 <?php
 				$link=koneksi_db();
-				$sqlbrg="select * from t_brg group by kd_brg order by ur_brg";
+				$sqlbrg="select * from t_brg group by kd_brg";
 				$resbrg=mysql_query($sqlbrg,$link);
 				if($resbrg){
 					while($brg=mysql_fetch_array($resbrg)){
@@ -131,34 +131,10 @@ body {
         </tr>
 </table>
 </form>
+      </td>
 
-
-<div id="tabel-pers">   
-   <table width="102%" border="0.5" align="center" bordercolor="#000000">
-            <tr>
-              <th bgcolor="#FFCC00" scope="col">Kode Barang</th>
-              <th bgcolor="#FFCC00" scope="col">Nama barang</th>
-              <th bgcolor="#FFCC00" scope="col">Jumlah</th>
-            </tr>
-<?php
-				$link=koneksi_db();
-				$sqlpros="select kd_brg,ur_brg,sum(kuantitas)jumlah from (select s.kd_brg,b.ur_brg ,s.kuantitas,s.tgldok from t_sediam s,t_brg b where b.kd_brg=s.kd_brg group by s.kd_brg,s.tgldok ) g_sedia group by kd_brg order by tgldok desc";
-				$respros=mysql_query($sqlpros,$link);
-				if($respros){
-					while($pros=mysql_fetch_array($respros)){
-?>
-            <tr>
-            	
-              <td bgcolor="#FFFFFF" scope="row"><?php echo $pros['kd_brg']  ; ?></td>
-              <td bgcolor="#FFFFFF"><?php echo $pros['ur_brg']  ; ?></td>
-              <td bgcolor="#FFFFFF"><?php echo $pros['jumlah']  ; ?></td>
-            </tr>
-<?php
-					}
-				}
-?>			
-          </table>
-</div>
+    <p>&nbsp;</p>
+    <tr>
 <script type="text/javascript" src="kode/jquery-1.4.3.min.js"></script>
 <script type="text/javascript" src="kode/cal.js"></script>
 <script type="text/javascript">
@@ -168,6 +144,8 @@ jQuery(document).ready(function () {
 });
 
 function gen_kd_pers(){
+
+	alert("adeuh");
 document.getElementById("pers").value=document.getElementById("barang").value;
 }
 </script>
