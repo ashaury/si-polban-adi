@@ -1,5 +1,6 @@
 <?php
 include("lib.php");
+$id=$_GET['brg'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -127,7 +128,7 @@ body {
           <td ></td>
           <td></td>
           <td  align="left"><input type="submit" name="button" id="button" value="tambah" />&emsp;  
-                <input onclick="javascript:back()" type="button" value="batal" /></td>
+                <input onclick="window.location.href='Persedian_Masuk.php'" type="button" value="batal" /></td>
         </tr>
 </table>
 </form>
@@ -142,21 +143,25 @@ body {
             </tr>
 <?php
 				$link=koneksi_db();
-				$sqlpros="select kd_brg,ur_brg,sum(kuantitas)jumlah from (select s.kd_brg,b.ur_brg ,s.kuantitas,s.tgldok from t_sediam s,t_brg b where b.kd_brg=s.kd_brg group by s.kd_brg,s.tgldok ) g_sedia group by kd_brg order by tgldok desc";
-				$respros=mysql_query($sqlpros,$link);
-				if($respros){
-					while($pros=mysql_fetch_array($respros)){
+				$sqlm="select kd_brg,ur_brg,sum(kuantitas)jumlah from (select s.kd_brg,b.ur_brg ,s.kuantitas,s.tgldok from t_sediam s,t_brg b where b.kd_brg=s.kd_brg group by s.kd_brg,s.tgldok ) g_sedia where kd_brg='$id' group by kd_brg order by tgldok desc";
+				$resm=mysql_query($sqlm,$link);
+				if($resm){
+					$pros=mysql_fetch_array($resm);
+					$m=$pros['jumlah'];
+				}
+				$sqlk="select kd_brg,ur_brg,sum(kuantitas)jumlah from (select s.kd_brg,b.ur_brg ,s.kuantitas,s.tgldok from t_sediak s,t_brg b where b.kd_brg=s.kd_brg group by s.kd_brg,s.tgldok ) g_sedia where kd_brg='$id' group by kd_brg order by tgldok desc";
+				$resk=mysql_query($sqlk,$link);
+				if($resk){
+					$k=mysql_fetch_array($resk);
+					$kp=$k['jumlah'];
+					}																			
 ?>
             <tr>
             	
               <td bgcolor="#FFFFFF" scope="row"><?php echo $pros['kd_brg']  ; ?></td>
               <td bgcolor="#FFFFFF"><?php echo $pros['ur_brg']  ; ?></td>
-              <td bgcolor="#FFFFFF"><?php echo $pros['jumlah']  ; ?></td>
-            </tr>
-<?php
-					}
-				}
-?>			
+              <td bgcolor="#FFFFFF"><?php echo $m.'-'.$k.'='.$m-$kp  ; ?></td>
+            </tr>		
           </table>
 </div>
 <script type="text/javascript" src="kode/jquery-1.4.3.min.js"></script>
@@ -168,7 +173,31 @@ jQuery(document).ready(function () {
 });
 
 function gen_kd_pers(){
-document.getElementById("pers").value=document.getElementById("barang").value;
+var brg=document.getElementById("barang").value
+document.getElementById("pers").value=brg;
+
+get_saldo(brg);
+}
+
+function get_saldo(str)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("tabel-pers").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","saldo_barang.php?brg="+str,true);
+xmlhttp.send();
 }
 </script>
 </body>

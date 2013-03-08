@@ -21,9 +21,9 @@ VALUES (
 ";
 $res=mysql_query($query,$link);
 if($res){
-	header("location:Table_Transaksi_Masuk.php?a=berhasil");
+	header("location:Table_Transaksi_Masuk.php?brg=$brg");
 }
 else
 {
-	header("location:Table_Transaksi_Masuk.php?a=eror+database");
+	header("location:Table_Transaksi_Masuk.php?brg=eror+database");
 }
